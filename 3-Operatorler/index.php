@@ -7,7 +7,6 @@ Operator : Bir veya daha fazla değeri alan ve işlemden geçirip sonucu döndü
 
 
 
-
 Bit işlem operatörleri :
 
 $   : ve                    -->  iki operand alır ve karşılıklı bitlerini sırayla karşılaştırır. (her ikisi 1 ken 1 diğer durumlar 0)
@@ -113,5 +112,3 @@ Not : operatörler arasında işlem öncelikleri vardır.
 
 */
 
-echo "8"==8;
-echo "8" === 8;
