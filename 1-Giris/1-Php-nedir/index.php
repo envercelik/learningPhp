@@ -19,20 +19,12 @@ Not : php kodlarının çalışabilmesi için sunucuya php yüklü olmalıdır.
 
 
 
-Not:
+Not: Web sunucusu ile ilgili olarak
 
 -Sunucu işletmi sistemi windows veya linux olabilir. Linux daha hızlı çalışır.
--web server : işletim sistemi üzerinde  bir "SERVİS" olarak çalışan yazılımdır. Apache,  Ngnix ve LiteSpeed  e göre daha yavaştır.
+-web server : sunucu işletim sistemi üzerinde  bir "SERVİS" olarak çalışan yazılımdır. Apache,  Ngnix ve LiteSpeed  e göre daha yavaştır.
 -veritabanı : genel olarak MySQL veya MariaDB veri tabanı sistemleri kullanılır. Big datalar işin içine girince PostgreSql tercih edilir.
 
-
-
-
-
-
-
-
- Sunucu da linux işletim sistemi windowstan daha hızlıdır.
 
 
 
