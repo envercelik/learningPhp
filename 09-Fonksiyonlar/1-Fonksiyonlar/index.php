@@ -46,6 +46,14 @@ $dizi = [ function($item){echo $item;}  ,  function($item){echo $item;} ];
 echo $dizi[0]("item1");
 echo $dizi[1]("item2");
 
+//anonim fonksiyonu sayfa yüklendiğinde otomatik olarak çağırabiliriz (php 7)
+/*
+(function() {
+    echo "sayfa yüklendi";
+})();
+*/
+
+
 
 
 
@@ -101,6 +109,82 @@ bilgileriGoster("Enver Çelik" , "İstanbul" , "Bilgisayar Mühendisi" , "devcel
 
 
 
+
+
+/*REFERANSA BAĞLI DEĞER ATAMA*/
+
+$isim = "Enver Çelik";
+
+function isimDegis(&$isim) {
+
+    $isim = "Fırat Çelik";
+
+}
+
+isimDegis($isim);
+echo $isim;
+
+// not : eğer paramtrenin adresini göndermesydik isim değişmezdi. (local alan olduğundan)
+
+
+
+
+
+
+
+/*RECURSICE FONKSİYON*/
+
+function say($sayi) {
+
+    if($sayi<25) {
+        echo $sayi;
+        say($sayi+1);
+    }
+}
+say(1);
+
+
+
+
+
+/*STATIC DEGISKEN KULLANIMI*/
+
+function skor() {
+
+    static $skor = 0;
+    $skor++;
+
+}
+
+skor();
+skor(); //skor her çağrıldığında $skor 1 artar . Recursive olmasa 0 olarak kalırdı.
+
+
+
+
+
+
+
+/*YIELD KULLANIMI*/
+
+//return gibi değer döner ama fonksiyon durmaz.
+
+function sayVeDondur($baslangic , $bitis) {
+
+    while ($baslangic <= $bitis) {
+        yield $baslangic;
+        $baslangic++;
+
+    }
+}
+
+$sonuc = sayVeDondur(1,10); //yield generate dizisi döner.
+
+foreach ($sonuc as $deger) {
+    echo $deger . " ";
+}
+
+//not : değerleri bir diziye depolayıp return ile dönseydik bellek kullanımı yaklaşık 40 kat artardı.
 
 
 
