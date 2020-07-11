@@ -1,19 +1,27 @@
 <?php
 
+/*GİRİŞ*/
 /*
-
 Düzenli ifadeler (Regular expressions) : Bir string kümesini ifade eden desendir. Kullanım amacı ise elimizdeki
                                          stringin bu desene uygunluğunu sınamaktır. Bu sayade bir ifade ile
                                          bir stringin bir kümeye ait olup olmadığı kontrol edilir.
 
 
+
 Örneğin : formdan gelen email verisi gerçekten email mi ? Bir düzenli ifade ile bunun kontrolü yapılabilir.
-          Botlar bir siteden çektiği veriyi düzenli ifadeler ile filtreler.
           Yorumlarda gelen küfürler filtrelenebilir.
 
 
-Not : preg_matc()       : bir stringde belirtilen string ile eşleşen ilk değeridizi olarak döner.
-      preg_match_all()  : tüm eşleşenleri dönerç
+
+Bazı Fonksiyonlar :
+
+                    preg_matc()       : bir stringde belirtilen string ile eşleşen ilk değeri dizi olarak döner.
+                    preg_match_all()  : tüm eşleşenleri döner.
+                    preg_filter()     : eşleşen değerleri değişitiri dizi olarak döner.
+                    preg_replace()    : aynısı
+                    preg_split()      : her eşleştiği yerden boler. Eşleşen değer silinir. Sonucu dizi olarak döner.
+                    preg_grep()       : bir dizide desen içeriği olan dizi elmanlarını alır. Yeni dizi olarak döner.
+                    preg_quote()      : özel karakterlerin önüne \ ekler.
 
 */
 
@@ -26,21 +34,75 @@ $desen = "/it/";   //desenin olşturduğu küme : {it}
 
 
 preg_match($desen , $metin , $sonuc);
-//print_r($sonuc);
-
-if($sonuc[0] == "it")
-    echo "Dede dede bu bana fay da sız $sonuc[0] diyor.";
+if($sonuc)
+//    echo "Dede dede bu bana fay da sız $sonuc[0] diyor.";
 echo "<br><br>";
 
 
-
+$metin = "bir berber bir berber e gel beraber bir berber dükkanı açalım demiş";
+$sonuc = preg_filter('/berber/' , 'tüpçü' , $metin);
+//echo $sonuc;
 
 
 
 $desen = "/\w/";   //desenin oluşturduğu küme {tüm harfler , rakamlar , altçizgi}
 preg_match_all($desen , $metin , $sonuc); //metnin bu kümede olan değerleri
+//print_r($sonuc);
+
+
+
+
+
+/*AYARLAR*/
+
+
+// i :  büyük/küçük harf duyarlılığını kaldırır. (m ve M artık aynı harftir.)
+$metin = "Merhaba benim adım EnVer";
+$desen = '/Enver/i';
+preg_match($desen,$metin,$sonuc);
+//print_r($sonuc);
+
+
+
+//u :  unicode desteği sağlar. (türkçe karakter sorununu da çözer)
+$metin = "Enver çelik";
+$desen1 = "//";
+$desen2 = "//u";
+$sonuc = preg_split($desen1 ,$metin);
+//print_r($sonuc);
+$sonuc = preg_split($desen2,$metin);
+//print_r($sonuc);
+
+
+
+//x : desendeki boslukllari kaldirir.
+$metin = "Merhaba ben enver";
+$desen = "/e n v e r/x";
+preg_match($desen,$metin,$sonuc);
+//print_r($sonuc);
+
+
+
+
+//s : içerikte birden fazla satır varsa tek satır olarak kontrol et. (S : satır baslarını dahil etme \n <br> gibi)
+
+$metin = "Merhaba 
+          benim
+          adım
+          enver ";
+
+$desen1 = "/.*/"; //ne gelirse gelsin
+$desen2 = "/.*/s";
+preg_match_all($desen1  ,$metin,$sonuc);
+print_r($sonuc);
+preg_match_all($desen2  ,$metin,$sonuc);
 print_r($sonuc);
 
+
+
+
+
+/*BELİRLEYİCİLER*/
 
 
 
