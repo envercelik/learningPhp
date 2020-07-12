@@ -94,9 +94,11 @@ $metin = "Merhaba
 $desen1 = "/.*/"; //ne gelirse gelsin
 $desen2 = "/.*/s";
 preg_match_all($desen1  ,$metin,$sonuc);
-print_r($sonuc);
+//print_r($sonuc);
 preg_match_all($desen2  ,$metin,$sonuc);
-print_r($sonuc);
+//print_r($sonuc);
+
+
 
 
 
@@ -104,7 +106,60 @@ print_r($sonuc);
 
 /*BELİRLEYİCİLER*/
 
+//  ^ : aranan metnin başındaysa yakalar.
 
+$metin1 = "php betik bir dildir.";
+$metin2 = "web siteleri  php ile dinaik hale gelir. ";
+$desen = "/^php/";
+preg_match($desen , $metin1 , $sonuc);
+//print_r($sonuc);
+
+
+
+//  $ : aranan metnin sonundaysa yakalar.
+
+$metin1 = "php betik bir dildir.";
+$metin2 = "web sitelerini dinamik hale gitren dil php";
+$desen = "/php$/";
+preg_match($desen , $metin2 , $sonuc);
+//print_r($sonuc);
+
+
+
+//  \b : metindeki kelimeleri tek tek ara. aranan desen kelimelerin başında veya sonudaysa yakala.
+//  \B : ortada ise yakalar.
+
+$metin1 = "Benim adım enver ve ben bir mobil app geliştiricisiyim.";
+$metin2 = "Benim adım enverxx ve ben bir mobil app geliştiricisiyim.";
+$desen1 = "/\bver/"; //basında arar
+$desen2 = "/ver\b/"; //sonunda arar.
+$sonuc = preg_match($desen2 , $metin1);
+//print_r($sonuc);
+
+
+
+
+//  ?=  :  devamında belirtilen ifade gelirse yakalar
+//  ?!  : devamında belirtilen ifade gelmeyenleri yakalar.
+
+$metin = "php yaygın kullanılan bir programlama dilidir. php'yi kolayca öğrenebilirsiniz.";
+$desen = "/php(?='yi)/";  //sadece 'yi ile devam eden php kelimlerini yakalar.
+preg_match($desen , $metin , $sonuc);
+//print_r($sonuc);
+
+
+
+//{x} :  // x kadar tekrar ediyorsa yakalar.
+$metin = "- Ben enver -- kodlamayı severim --- bisiklet sürmeyi severim";
+$desen = "/-{3}/"; //3 kere tekrar eden tire leri yakala
+preg_match($desen , $metin , $sonuc);
+print_r($sonuc);
+
+//not : {x,}  --> x kere veya daha fazla tekrar ediyorsa
+//      {x,y] --> en az x en fazla y kere tekrar ediyorsa
+//      +     --> bunların yerine + kullnılırsa 1 veya daha fazla tekrar ediyorsa yakalar.
+//      *     --> 0 veya daha fazla varsa yakalar.
+//      ?     --> 0 yada 1 defa tekrarlanıyorsa yakalar.
 
 
 
