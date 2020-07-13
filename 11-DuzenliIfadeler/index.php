@@ -153,7 +153,7 @@ preg_match($desen , $metin , $sonuc);
 $metin = "- Ben enver -- kodlamayı severim --- bisiklet sürmeyi severim";
 $desen = "/-{3}/"; //3 kere tekrar eden tire leri yakala
 preg_match($desen , $metin , $sonuc);
-print_r($sonuc);
+//print_r($sonuc);
 
 //not : {x,}  --> x kere veya daha fazla tekrar ediyorsa
 //      {x,y] --> en az x en fazla y kere tekrar ediyorsa
@@ -164,67 +164,75 @@ print_r($sonuc);
 
 
 
+//  ()      : grup tanımlar.
+//  (x|y)   : x veya y olanları yakala
+
+$metin = "furkan ovaz ve serkan  dündar arkadaştır. ";
+$desen = "/(fur|ser)kan/"; //furkan-serkan-fur-ser
+preg_match_all($desen,$metin,$sonuc);
+//print_r($sonuc);
+
+
+
+//?:    : alt grup oluşturur. Gruptan fakı grup içindeki değerler depolanmaz.
+$desen = "/fur(?:kan)/";
+preg_match_all($desen,$metin,$sonuc);
+//print_r($sonuc);
+
+
+//    \  : desende kendisinden sonra gelen karakterin fonksiyonel özelliğini yok eder.
+
+$metin = "2+2 = 4";
+$desen = "/\+/"; //+ nin belirleyici özelliği kaldırıldı.
+preg_match($desen,$metin,$sonuc);
+//print_r($sonuc);
 
 
 
 
 
-
-
-/*ÖZELLİKLER VE KURALLAR*/
-
-/*AYARLAR */
 /*
-i : büyük/küçük harf duyarlılığı kaldırır.
-u : normalde sadece latin karakterler desteklenir. u ile unicode (evrensel) tanımı eklenir. Bu sayede türkçe karakter
-    desteği kazanmış olur.
-x : boşluklar etkisiz hale getirilir.
-s : birden fazla satır varsa tüm satırlar kontrol edilecek mi
+[x]    : belirtilen karakterleri tek tek yakalar. [mel] tüm m e l karakterlerini yakaklar.
+[^x]   : belirtilen karakterler hariç yakalar.  [^mel] tüm m e l karakterleri hariç yakalar.
+
+[x-y]  : karakter aralığı belirtir.[a-z] a dan z ye yakalar
+[^x-y] : belirtilen karakter aralığı hariç yakalar. [^a-z]  a dan z ye hariç yakalar.
 
 */
+$metin = "Merhaba benim adım enver";
+$desen = "/[mel]/";
+preg_match_all($desen , $metin , $sonuc);
+//print_r($sonuc);
 
-/*KONUM BELİRLEYİCİLER*/
-/*
-^  : sonda arar.
-$  : başta arar.
-\b : başta ve sonda arar.
-\B : arada arar.
-?= : belirtilen ifadenin önündekilerde arama yapar.
-?! : belirtilen ifade ile devam etmyen alanda arama yapar.
-
-*/
-
-
-/*NİCELİK BELİRLEYİCİLER*/
-/*
-{x} : değer en az x defa tekrarkanıyorsa
-{x,} : değer x veya daha fazla tekrarlanıyorsa
-{x,y} : değer en az x veya y kere tekrarlanıyorsa
-+ : değer 1 veya daha fazla tekrar ediyorsa
-* : hiç veya daha fazla
-? : ya hiç yada 1 defa
+$desen = "/[a-z]/";
+preg_match_all($desen , $metin , $sonuc);
+print_r($sonuc);
 
 
 
-/*ÖZEL BELİRLEYİCİLER*/
-/*
-()      : grup tanımlar.
-(x|y)   : x yada y yi bulur.
-(?:)    : alt grup oluşturmak için kullanılır.
-\       :
-[abc]   : a b ve c karakterlerini yakalar.
-[a-z]   : a dan z ye karakterleri yakalar
-[^abc]  : a b ve c karakterleri hariç yakalar.
-[^a-z]  : a da z ye karakterler hariç yakalar
-.       :
-\w      : harf-rakam-alt çizgi
-\W      : harf-rakam-alt çizgi hariç
-\d      : rakam
-\D      : rakamlar hariç
-\s      : sadece booşluklar
-\S      : boşluk dışında kalanlar.
+
+//   .  : yeni satır hariç herşeyi yakalar.
+//   \w  : harf-rakam-altçizgi
+//   \W  : harf-rakam-altçizgi hariç
+//   \d  : sadece rakamlar
+//   \D  : rakamlar hariç
+//   \s  : boslukları yakalar
+//   \S  : bosluklar hariç
 
 
-*/
+
+
+
+
+
+/*YAYGIN KULLANILAN ÖRNEK DESENLER*/
+
+
+
+
+
+
+
+
 
 ?>
