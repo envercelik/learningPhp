@@ -109,9 +109,90 @@ gettimeofday()                 : ortaya karışık bir şeyler dönüyor :)
 
 
 
+/*
+date_create();      : Bir tarih dizisi nesnesi döner. Not nesne dizisinin elemanlarına anahtar ile ulaşılamaz.
+                      foreach döngüsü ile ulaşılabilir. (ilginç bir yapısı var yani)
+                      Not : parametre vermessen anlık zamanı alır.
+*/
+$Tarih = date_create(1996-12-23);
+//print_r($Tarih);
 
 
 
 
+/*
+date_date_set();        : tarih nesnesini yeni bir tarih ile set eder.
+*/
+date_date_set($Tarih , 2018,8,5);
 
 
+
+
+/*
+date_time_set($Tarih,10,10,10);     : tarih nesnesinin saatini set eder.
+*/
+date_time_set($Tarih,10,10,10);
+
+
+
+
+/*
+date_timestamp_get();       : bir tarih nesnesinin tarih-saat ini zaman damgası olarak döner.
+*/
+//echo date_timestamp_get($Tarih);
+
+
+
+
+/*
+date_timestamp_set();       : bir tarih nesnesinin tarihini zaman damgasına göre set eder.
+*/
+date_timestamp_set($Tarih , 1533453010);
+
+
+
+
+/*
+date_create_from_format();      : belirtilen biçime göre tarih nesnesi döner.
+*/
+$tarih = date_create_from_format("d-m-Y" , "08-12-1980"); //biçim değiştirilebilir.
+
+
+
+
+/*
+date_format();      : daha önceden oluştrulmuş tarih nesnesinin formatını değiştirir.
+*/
+date_format($tarih , "d.m.Y H:i:s");
+
+
+
+
+/*
+date_modify();                                  : tarihin üzerine tarih ekler (bildiğimiz toplama)
+date_add();                                     : aynısı (alttaki uzun isimli fonksiyonu kullanır.)
+date_interval_create_from_date_string();        :
+*/
+/*
+$date = date_create("12-23-1996");
+date_modify($date, "+1 year");
+date_modify($date, "+2 month");
+date_modify($date, "+3 day");
+date_modify($date, "+12 hour");
+date_modify($date, "+45 minutes");
+date_modify($date, "+5 second");
+
+date_add($tarih , date_interval_create_from_date_string("+3 hour"));
+*/
+
+
+
+/*
+date_diff();        : iki tarih arasındaki farkı alır yeni bir tarih nesnesi döner.
+format();           : date_diff() methodunun olusturdupu tarihi berlirten formata göre formatlar.
+*/
+$tarih1 = date_create("1996-12-22");
+$tarih2 = date_create("2020-7-15");
+$tarih = date_diff($tarih1,$tarih2);
+$tarih = $tarih->format("%y yıl %m  ay %d  gun   "); //iki tarih arasındaki fark
+echo $tarih;
