@@ -34,6 +34,7 @@ mktime();           : belirtilen tarihin zaman damgasını döner.
 
 /*
 date();             : parametreye göre biçimli anlık tarih bilgisi döner.
+not                 : eğer zaman damgası verilmesse güncel zamana göre işlem yapar.
 */
 //echo "Yıl           :" . date("Y");
 //echo "Tarih         :" . date("d m Y");
@@ -194,5 +195,49 @@ format();           : date_diff() methodunun olusturdupu tarihi berlirten format
 $tarih1 = date_create("1996-12-22");
 $tarih2 = date_create("2020-7-15");
 $tarih = date_diff($tarih1,$tarih2);
-$tarih = $tarih->format("%y yıl %m  ay %d  gun   "); //iki tarih arasındaki fark
-echo $tarih;
+$tarih = $tarih->format("%y yıl %m  ay %d  gun  "); //iki tarih arasındaki fark
+//echo $tarih;
+
+
+
+
+/*
+strftime();     : yerel tarihi belirtilen biçime göre döner.
+strtotime();    : ingilizce metin içerikli zamanın zaman damgasını döner.
+setlocale();    : tarih ve zamanı yerele ayarlar.
+iconv();        : karakter setini  setini ayarlar.
+*/
+/*
+echo iconv("LATIN5" , "UTF-8", strftime("%d %B %Y %A") ); echo "<br>";
+setlocale(LC_ALL ,"tr-TR");
+echo strftime("%d %B %Y %A");  echo "<br>";//türkçe karakter sorunlu
+echo iconv("LATIN5" , "UTF-8", strftime("%d %B %Y %A") ); //türkçe karakte sorunsuz
+*/
+/*
+echo strtotime("now")                   ."<br/>";
+echo strtotime("22 December 1996")      ."<br/>";
+echo strtotime("+1 Day")                ."<br/>";
+echo strtotime("+1 Week")               ."<br/>";
+echo strtotime("+1 year")               ."<br/>";
+*/
+
+
+
+
+/*
+date_sun_info();    : Belirtilen lokasyona göre gün doğumu , batımı ... ile ilgili bilgiler döner.
+parametreler        : 1.zaman damgası 2.enlem 3.boylam
+
+date_sunrise();     : Belirtilen lokasyonun gün doğumunu döner.
+date_sunset();      : Belirtilen lokasyonun gün batımını döner.
+parametreler        : 1.zaman damgası 2.çıktı türü 3. enlem 4.boylam
+2. parametre        : SUNFUNCS_RET_STRING | SUNFUNCS_RET_DOUBLE | SUNFUNCS_RET_TIMESTAMP   olabilir.
+*/
+/*
+$zamanDamgasi = strtotime("now");
+$sonuc = date_sun_info($zamanDamgasi , 41.008524,28.980212); //ayasofya
+//print_r($sonuc);
+echo "Ayasofya gün doğumu : " . date("d.m.Y H:i:s" , $sonuc['sunrise']) . "<br>";
+echo date_sunrise($zamanDamgasi , SUNFUNCS_RET_STRING , 41.008524 , 28.980212) . "<br>";
+echo date_sunset($zamanDamgasi , SUNFUNCS_RET_STRING , 41.008524 , 28.980212);
+*/
